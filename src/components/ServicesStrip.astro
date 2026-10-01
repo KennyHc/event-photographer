@@ -1,0 +1,53 @@
+---
+import type { Lang } from '../i18n/ui';
+import { useTranslations } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const services = [
+  t('service.weddings'),
+  t('service.baptisms'),
+  t('service.private'),
+  t('service.corporate'),
+];
+---
+
+<section class="services fade-in">
+  <div class="wrap">
+    <p class="eyebrow">{t('home.servicesHeading')}</p>
+    <ul class="services__list">
+      {services.map((s) => <li>{s}</li>)}
+    </ul>
+    <p class="services__note">{t('service.inquire')}</p>
+  </div>
+</section>
+
+<style>
+  .services {
+    padding-block: 3.5rem;
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .services__list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem 2.5rem;
+    margin: 1rem 0 0;
+    padding: 0;
+    font-family: var(--font-serif);
+    font-size: clamp(1.15rem, 2.4vw, 1.6rem);
+  }
+
+  .services__note {
+    margin-top: 1.25rem;
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+  }
+</style>

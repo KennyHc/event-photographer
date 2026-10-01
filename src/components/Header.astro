@@ -1,0 +1,185 @@
+---
+import type { Lang } from '../i18n/ui';
+import { useTranslations } from '../i18n/ui';
+import { href } from '../lib/paths';
+
+interface Props {
+  lang: Lang;
+  altPath: string;
+  transparent?: boolean;
+}
+
+const { lang, altPath, transparent = false } = Astro.props;
+const t = useTranslations(lang);
+const otherLang: Lang = lang === 'en' ? 'es' : 'en';
+---
+
+<header class:list={['header', { 'header--transparent': transparent }]} data-header>
+  <div class="wrap header__inner">
+    <a href={href('/', lang)} class="header__brand">Kenny He</a>
+
+    <nav class="header__nav" aria-label="Primary">
+      <a href={href('/work', lang)}>{t('nav.work')}</a>
+      <a href={href('/about', lang)}>{t('nav.about')}</a>
+      <a href={href('/contact', lang)}>{t('nav.contact')}</a>
+      <a href={href(altPath, otherLang)} class="header__lang" hreflang={otherLang}>
+        {t('nav.switchTo')}
+      </a>
+    </nav>
+
+    <button
+      type="button"
+      class="header__toggle"
+      data-nav-toggle
+      aria-expanded="false"
+      aria-controls="mobile-nav"
+    >
+      <span class="visually-hidden">{t('nav.menu')}</span>
+      <span class="header__toggle-bars" aria-hidden="true"></span>
+    </button>
+  </div>
+
+  <nav id="mobile-nav" class="mobile-nav" data-nav-panel aria-label="Mobile">
+    <a href={href('/work', lang)}>{t('nav.work')}</a>
+    <a href={href('/about', lang)}>{t('nav.about')}</a>
+    <a href={href('/contact', lang)}>{t('nav.contact')}</a>
+    <a href={href(altPath, otherLang)} hreflang={otherLang}>{t('nav.switchTo')}</a>
+  </nav>
+</header>
+
+<style>
+  .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    background: var(--color-bg);
+    border-bottom: 1px solid var(--color-border);
+    transition: background 0.3s ease, border-color 0.3s ease;
+  }
+
+  .header--transparent {
+    background: transparent;
+    border-bottom-color: transparent;
+  }
+
+  .header--transparent .header__brand,
+  .header--transparent .header__nav a {
+    color: #fff;
+  }
+
+  .header--transparent.is-scrolled {
+    background: var(--color-bg);
+    border-bottom-color: var(--color-border);
+  }
+
+  .header--transparent.is-scrolled .header__brand,
+  .header--transparent.is-scrolled .header__nav a {
+    color: var(--color-text);
+  }
+
+  .header__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 76px;
+  }
+
+  .header__brand {
+    font-family: var(--font-serif);
+    font-size: 1.15rem;
+    letter-spacing: 0.02em;
+    color: var(--color-text);
+  }
+
+  .header__nav {
+    display: none;
+    align-items: center;
+    gap: 2rem;
+    font-size: 0.85rem;
+    letter-spacing: 0.02em;
+  }
+
+  .header__nav a {
+    color: var(--color-text);
+    position: relative;
+  }
+
+  .header__lang {
+    border: 1px solid currentColor;
+    padding: 0.3em 0.7em;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    letter-spacing: 0.06em;
+  }
+
+  .header__toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: transparent;
+    border: none;
+    color: inherit;
+  }
+
+  .header__toggle-bars,
+  .header__toggle-bars::before,
+  .header__toggle-bars::after {
+    content: '';
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: currentColor;
+    border-radius: 1px;
+    position: relative;
+  }
+
+  .header--transparent .header__toggle {
+    color: #fff;
+  }
+
+  .header--transparent.is-scrolled .header__toggle {
+    color: var(--color-text);
+  }
+
+  .header__toggle-bars::before {
+    top: -6px;
+  }
+  .header__toggle-bars::after {
+    top: 4px;
+  }
+
+  .mobile-nav {
+    display: none;
+    flex-direction: column;
+    gap: 0;
+    background: var(--color-bg);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .mobile-nav.is-open {
+    display: flex;
+  }
+
+  .mobile-nav a {
+    padding: 1rem var(--gutter);
+    border-top: 1px solid var(--color-border);
+    color: var(--color-text);
+    font-size: 0.95rem;
+  }
+
+  @media (min-width: 860px) {
+    .header__nav {
+      display: flex;
+    }
+    .header__toggle {
+      display: none;
+    }
+    .mobile-nav {
+      display: none !important;
+    }
+  }
+</style>

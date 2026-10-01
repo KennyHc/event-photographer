@@ -1,0 +1,38 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { useTranslations } from '../i18n/ui';
+import { href } from '../lib/paths';
+
+const lang = 'en' as const;
+const t = useTranslations(lang);
+---
+
+<BaseLayout lang={lang} path="/404" title={`${t('404.heading')} — ${t('site.title')}`}>
+  <section class="wrap not-found">
+    <p class="eyebrow">404</p>
+    <h1>{t('404.heading')}</h1>
+    <p class="not-found__body">{t('404.body')}</p>
+    <a class="btn" href={href('/', lang)}>{t('404.home')}</a>
+  </section>
+</BaseLayout>
+
+<style>
+  .not-found {
+    min-height: 60vh;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 1.25rem;
+    padding-block: 9rem 6rem;
+  }
+
+  .not-found h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+  }
+
+  .not-found__body {
+    color: var(--color-text-muted);
+    max-width: 44ch;
+  }
+</style>

@@ -1,0 +1,70 @@
+---
+import type { Lang } from '../i18n/ui';
+import { useTranslations } from '../i18n/ui';
+import { href } from '../lib/paths';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const year = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="wrap footer__inner">
+    <a href={href('/', lang)} class="footer__brand">Kenny He</a>
+
+    <div class="footer__links">
+      <a href="mailto:khechen2018@gmail.com">khechen2018@gmail.com</a>
+      <a href="https://instagram.com/photo._.ken" target="_blank" rel="noopener noreferrer">
+        Instagram
+      </a>
+      <a href="https://wa.me/34614533977" target="_blank" rel="noopener noreferrer">
+        WhatsApp
+      </a>
+    </div>
+
+    <p class="footer__rights">&copy; {year} Kenny He. {t('footer.rights')}</p>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    border-top: 1px solid var(--color-border);
+    background: var(--color-bg-raised);
+    padding-block: 3rem 2.5rem;
+  }
+
+  .footer__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+    text-align: center;
+  }
+
+  .footer__brand {
+    font-family: var(--font-serif);
+    font-size: 1.1rem;
+  }
+
+  .footer__links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+  }
+
+  .footer__links a:hover {
+    color: var(--color-text);
+  }
+
+  .footer__rights {
+    font-size: 0.78rem;
+    color: var(--color-text-muted);
+  }
+</style>

@@ -1,0 +1,80 @@
+---
+import { Image, getImage } from 'astro:assets';
+import type { EventImage } from '../lib/images';
+
+interface Props {
+  images: EventImage[];
+  altPrefix: string;
+}
+
+const { images, altPrefix } = Astro.props;
+
+// Pre-render a large optimized version of each photo for the lightbox.
+const fullImages = await Promise.all(
+  images.map((img) =>
+    getImage({ src: img.file, width: Math.min(img.file.width, 2400), format: 'webp' }),
+  ),
+);
+---
+
+<div class="gallery">
+  {
+    images.map((img, i) => (
+      <button
+        type="button"
+        class="gallery__item fade-in"
+        data-lightbox-trigger
+        data-full={fullImages[i].src}
+        data-alt={`${altPrefix} ${i + 1}`}
+        aria-label={`${altPrefix} ${i + 1}`}
+      >
+        <Image
+          src={img.file}
+          alt={`${altPrefix} ${i + 1}`}
+          widths={[400, 700, 1000]}
+          sizes="(min-width: 900px) 32vw, 45vw"
+          loading="lazy"
+          format="webp"
+        />
+      </button>
+    ))
+  }
+</div>
+
+<style>
+  .gallery {
+    columns: 2;
+    column-gap: 0.9rem;
+  }
+
+  .gallery__item {
+    display: block;
+    width: 100%;
+    padding: 0;
+    margin: 0 0 0.9rem;
+    border: none;
+    background: var(--color-bg-raised);
+    break-inside: avoid;
+    -webkit-column-break-inside: avoid;
+  }
+
+  .gallery__item :global(img) {
+    width: 100%;
+    height: auto;
+    transition: opacity 0.2s ease;
+  }
+
+  .gallery__item:hover :global(img) {
+    opacity: 0.92;
+  }
+
+  @media (min-width: 720px) {
+    .gallery {
+      columns: 3;
+      column-gap: 1.25rem;
+    }
+    .gallery__item {
+      margin-bottom: 1.25rem;
+    }
+  }
+</style>

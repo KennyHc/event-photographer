@@ -1,0 +1,137 @@
+---
+import { Image } from 'astro:assets';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { useTranslations } from '../../i18n/ui';
+import portrait from '../../assets/about/portrait.jpg';
+
+const lang = 'es' as const;
+const t = useTranslations(lang);
+
+const steps = [
+  { title: t('about.step1.title'), body: t('about.step1.body') },
+  { title: t('about.step2.title'), body: t('about.step2.body') },
+  { title: t('about.step3.title'), body: t('about.step3.body') },
+];
+---
+
+<BaseLayout lang={lang} path="/about" title={`${t('about.heading')} — ${t('site.title')}`}>
+  <section class="wrap about">
+    <div class="about__intro fade-in">
+      <p class="eyebrow">{t('about.kicker')}</p>
+      <h1>{t('about.heading')}</h1>
+    </div>
+
+    <div class="about__grid">
+      <div class="about__portrait fade-in">
+        <Image
+          src={portrait}
+          alt="Kenny He"
+          widths={[400, 700, 1000]}
+          sizes="(min-width: 860px) 36vw, 90vw"
+          loading="lazy"
+          format="webp"
+        />
+      </div>
+      <div class="about__bio fade-in">
+        <p>{t('about.bio.p1')}</p>
+        <p>{t('about.bio.p2')}</p>
+        <p>{t('about.bio.p3')}</p>
+      </div>
+    </div>
+
+    <div class="about__how fade-in">
+      <p class="eyebrow">{t('about.howIWork')}</p>
+      <ol class="about__steps">
+        {
+          steps.map((step, i) => (
+            <li>
+              <span class="about__step-index">{String(i + 1).padStart(2, '0')}</span>
+              <h3>{step.title}</h3>
+              <p>{step.body}</p>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .about {
+    padding-block: 8.5rem 5rem;
+  }
+
+  .about__intro h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    margin-top: 0.4rem;
+  }
+
+  .about__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    margin-top: 3rem;
+    align-items: start;
+  }
+
+  .about__portrait :global(img) {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+  }
+
+  .about__bio {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    font-size: 1.08rem;
+    max-width: 58ch;
+  }
+
+  .about__bio p:first-child {
+    font-family: var(--font-serif);
+    font-size: clamp(1.25rem, 2.6vw, 1.6rem);
+  }
+
+  .about__how {
+    margin-top: 5rem;
+    padding-top: 3rem;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .about__steps {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin: 1.75rem 0 0;
+    padding: 0;
+  }
+
+  .about__steps h3 {
+    font-size: 1.25rem;
+    margin-top: 0.6rem;
+  }
+
+  .about__steps p {
+    margin-top: 0.5rem;
+    color: var(--color-text-muted);
+  }
+
+  .about__step-index {
+    font-family: var(--font-serif);
+    font-size: 0.9rem;
+    color: var(--color-accent);
+    letter-spacing: 0.05em;
+  }
+
+  @media (min-width: 720px) {
+    .about__grid {
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 3.5rem;
+    }
+    .about__steps {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+</style>

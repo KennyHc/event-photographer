@@ -1,0 +1,89 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { useTranslations } from '../i18n/ui';
+
+const lang = 'en' as const;
+const t = useTranslations(lang);
+---
+
+<BaseLayout lang={lang} path="/contact" title={`${t('contact.heading')} — ${t('site.title')}`}>
+  <section class="wrap contact">
+    <div class="contact__intro fade-in">
+      <p class="eyebrow">{t('nav.contact')}</p>
+      <h1>{t('contact.heading')}</h1>
+      <p class="contact__text">{t('contact.intro')}</p>
+    </div>
+
+    <div class="contact__links fade-in">
+      <a class="contact__link" href="mailto:khechen2018@gmail.com">
+        <span class="eyebrow">{t('contact.email')}</span>
+        <span class="contact__value">khechen2018@gmail.com</span>
+      </a>
+      <a class="contact__link" href="https://wa.me/34614533977" target="_blank" rel="noopener noreferrer">
+        <span class="eyebrow">{t('contact.whatsapp')}</span>
+        <span class="contact__value">+34 614 533 977</span>
+      </a>
+      <a class="contact__link" href="https://instagram.com/photo._.ken" target="_blank" rel="noopener noreferrer">
+        <span class="eyebrow">{t('contact.instagram')}</span>
+        <span class="contact__value">@photo._.ken</span>
+      </a>
+    </div>
+
+    <p class="contact__based fade-in">{t('contact.based')}</p>
+  </section>
+</BaseLayout>
+
+<style>
+  .contact {
+    padding-block: 8.5rem 6rem;
+  }
+
+  .contact__intro h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    margin-top: 0.4rem;
+  }
+
+  .contact__text {
+    margin-top: 1rem;
+    color: var(--color-text-muted);
+    max-width: 50ch;
+  }
+
+  .contact__links {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    margin-top: 3rem;
+  }
+
+  .contact__link {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    padding: 1.75rem;
+    border: 1px solid var(--color-border);
+    transition: border-color 0.2s ease, background 0.2s ease;
+  }
+
+  .contact__link:hover {
+    border-color: var(--color-accent);
+    background: var(--color-bg-raised);
+  }
+
+  .contact__value {
+    font-family: var(--font-serif);
+    font-size: 1.4rem;
+  }
+
+  .contact__based {
+    margin-top: 3rem;
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+  }
+
+  @media (min-width: 720px) {
+    .contact__links {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+</style>
