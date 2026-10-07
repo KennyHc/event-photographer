@@ -12,6 +12,30 @@ function setupFadeIns() {
     return;
   }
 
+  // Reveal anything already in (or above) the viewport instantly, with no
+  // transition, so above-the-fold content never visibly animates in.
+  const revealInstantly = (el: HTMLElement) => {
+    const previousTransition = el.style.transition;
+    el.style.transition = 'none';
+    el.classList.add('is-visible');
+    el.offsetHeight; // force reflow before restoring the transition
+    el.style.transition = previousTransition;
+  };
+
+  const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+  const toObserve: HTMLElement[] = [];
+
+  targets.forEach((el) => {
+    const rect = el.getBoundingClientRect();
+    if (rect.top < viewportHeight && rect.bottom > 0) {
+      revealInstantly(el);
+    } else {
+      toObserve.push(el);
+    }
+  });
+
+  if (!toObserve.length) return;
+
   const observer = new IntersectionObserver(
     (entries) => {
       for (const entry of entries) {
@@ -24,7 +48,7 @@ function setupFadeIns() {
     { threshold: 0.12, rootMargin: '0px 0px -40px 0px' },
   );
 
-  targets.forEach((el) => observer.observe(el));
+  toObserve.forEach((el) => observer.observe(el));
 }
 
 function setupNav() {

@@ -45,6 +45,10 @@ html {
 }
 
 body {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
   background: var(--color-bg);
   color: var(--color-text);
   font-family: var(--font-sans);
@@ -53,8 +57,13 @@ body {
   overflow-x: hidden;
 }
 
+main {
+  flex: 1 0 auto;
+}
+
 img {
   max-width: 100%;
+  height: auto;
   display: block;
 }
 
@@ -145,11 +154,17 @@ button:focus-visible,
   color: var(--color-bg);
 }
 
-/* Scroll fade-in */
+/* Scroll fade-in. Elements are visible by default so content never
+   disappears without JS; the `.js` class (set by an inline script in
+   BaseLayout's <head>) opts an unrevealed `.fade-in` into the hidden
+   starting state that the IntersectionObserver in site.ts then reveals. */
 .fade-in {
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.js .fade-in:not(.is-visible) {
   opacity: 0;
-  transform: translateY(16px);
-  transition: opacity 0.7s ease, transform 0.7s ease;
+  transform: translateY(12px);
 }
 
 .fade-in.is-visible {
@@ -158,9 +173,11 @@ button:focus-visible,
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .fade-in {
+  .js .fade-in:not(.is-visible) {
     opacity: 1;
     transform: none;
+  }
+  .fade-in {
     transition: none;
   }
 }

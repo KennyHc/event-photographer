@@ -27,7 +27,7 @@ export function getCover(images: EventImage[]): EventImage {
   return cover ?? images[0];
 }
 
-/** Up to `max` photos for the editorial showcase/gallery. */
-export function getShowcase(images: EventImage[], max = 10): EventImage[] {
+/** Every photo in the folder, capped at `max`, for the editorial gallery. */
+export function getShowcase(images: EventImage[], max = 30): EventImage[] {
   return images.slice(0, max);
 }

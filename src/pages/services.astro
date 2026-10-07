@@ -1,0 +1,296 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { useTranslations } from '../i18n/ui';
+import { href } from '../lib/paths';
+
+const lang = 'en' as const;
+const t = useTranslations(lang);
+
+const packages = [
+  {
+    name: t('services.package1.name'),
+    coverage: t('services.package1.coverage'),
+    idealFor: t('services.package1.idealFor'),
+  },
+  {
+    name: t('services.package2.name'),
+    coverage: t('services.package2.coverage'),
+    idealFor: t('services.package2.idealFor'),
+  },
+  {
+    name: t('services.package3.name'),
+    coverage: t('services.package3.coverage'),
+    idealFor: t('services.package3.idealFor'),
+  },
+];
+
+const included = [
+  t('services.included.item1'),
+  t('services.included.item2'),
+  t('services.included.item3'),
+  t('services.included.item4'),
+  t('services.included.item5'),
+];
+
+const steps = [
+  { title: t('services.how.step1.title'), body: t('services.how.step1.body') },
+  { title: t('services.how.step2.title'), body: t('services.how.step2.body') },
+  { title: t('services.how.step3.title'), body: t('services.how.step3.body') },
+  { title: t('services.how.step4.title'), body: t('services.how.step4.body') },
+];
+
+const extras = [t('services.extras.travel'), t('services.extras.prints')];
+
+const faqs = [
+  { q: t('services.faq.q1'), a: t('services.faq.a1') },
+  { q: t('services.faq.q2'), a: t('services.faq.a2') },
+  { q: t('services.faq.q3'), a: t('services.faq.a3') },
+  { q: t('services.faq.q4'), a: t('services.faq.a4') },
+];
+---
+
+<BaseLayout
+  lang={lang}
+  path="/services"
+  title={`${t('services.heading')} — ${t('site.title')}`}
+>
+  <section class="wrap services-page">
+    <div class="services-page__intro fade-in">
+      <p class="eyebrow">{t('services.eyebrow')}</p>
+      <h1>{t('services.heading')}</h1>
+    </div>
+
+    <div class="packages fade-in">
+      <h2 class="section-heading">{t('services.packages.heading')}</h2>
+      <div class="packages__grid">
+        {
+          packages.map((pkg) => (
+            <div class="package-card">
+              <h3>{pkg.name}</h3>
+              <p class="package-card__coverage">{pkg.coverage}</p>
+              <p class="package-card__ideal">{pkg.idealFor}</p>
+              <a class="btn" href={href('/contact', lang)}>
+                {t('services.quote')}
+              </a>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+
+    <div class="included fade-in">
+      <h2 class="section-heading">{t('services.included.heading')}</h2>
+      <ul class="detail-list">
+        {included.map((item) => <li>{item}</li>)}
+      </ul>
+    </div>
+
+    <div class="how fade-in">
+      <h2 class="section-heading">{t('services.how.heading')}</h2>
+      <ol class="how__steps">
+        {
+          steps.map((step, i) => (
+            <li>
+              <span class="how__step-index">{String(i + 1).padStart(2, '0')}</span>
+              <h3>{step.title}</h3>
+              <p>{step.body}</p>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+
+    <div class="extras fade-in">
+      <h2 class="section-heading">{t('services.extras.heading')}</h2>
+      <ul class="detail-list">
+        {extras.map((item) => <li>{item}</li>)}
+      </ul>
+    </div>
+
+    <div class="faq fade-in">
+      <h2 class="section-heading">{t('services.faq.heading')}</h2>
+      <div class="faq__list">
+        {
+          faqs.map((item) => (
+            <details class="faq__item">
+              <summary>
+                <span>{item.q}</span>
+              </summary>
+              <p>{item.a}</p>
+            </details>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <CtaBand lang={lang} />
+</BaseLayout>
+
+<style>
+  .services-page {
+    padding-block: 8.5rem 5rem;
+  }
+
+  .services-page__intro h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    margin-top: 0.4rem;
+  }
+
+  .packages,
+  .included,
+  .how,
+  .extras,
+  .faq {
+    margin-top: 5.5rem;
+    padding-top: 3rem;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .section-heading {
+    font-size: clamp(1.5rem, 3.4vw, 2.1rem);
+  }
+
+  .packages__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin-top: 1.75rem;
+  }
+
+  .package-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 1.75rem;
+    border: 1px solid var(--color-border);
+  }
+
+  .package-card h3 {
+    font-size: 1.3rem;
+  }
+
+  .package-card__coverage {
+    font-family: var(--font-serif);
+    font-size: 1.4rem;
+    color: var(--color-accent);
+  }
+
+  .package-card__ideal {
+    color: var(--color-text-muted);
+    font-size: 0.95rem;
+  }
+
+  .package-card .btn {
+    margin-top: auto;
+    align-self: flex-start;
+  }
+
+  .detail-list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem 2.5rem;
+    margin: 1.75rem 0 0;
+    padding: 0;
+    max-width: 960px;
+  }
+
+  .detail-list li {
+    padding-top: 0.9rem;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .how__steps {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin: 1.75rem 0 0;
+    padding: 0;
+  }
+
+  .how__steps h3 {
+    font-size: 1.25rem;
+    margin-top: 0.6rem;
+  }
+
+  .how__steps p {
+    margin-top: 0.5rem;
+    color: var(--color-text-muted);
+  }
+
+  .how__step-index {
+    font-family: var(--font-serif);
+    font-size: 0.9rem;
+    color: var(--color-accent);
+    letter-spacing: 0.05em;
+  }
+
+  .faq__list {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1.75rem;
+    max-width: 720px;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .faq__item {
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .faq__item summary {
+    list-style: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.1rem 0.25rem;
+    font-weight: 500;
+  }
+
+  .faq__item summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq__item summary::after {
+    content: '+';
+    flex-shrink: 0;
+    font-family: var(--font-serif);
+    font-size: 1.25rem;
+    color: var(--color-accent);
+    transition: transform 0.25s ease;
+  }
+
+  .faq__item[open] summary::after {
+    transform: rotate(45deg);
+  }
+
+  .faq__item summary:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  .faq__item p {
+    margin: -0.25rem 0.25rem 1.25rem;
+    color: var(--color-text-muted);
+  }
+
+  @media (min-width: 560px) {
+    .detail-list {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 720px) {
+    .packages__grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .how__steps {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+</style>

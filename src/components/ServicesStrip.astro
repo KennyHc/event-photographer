@@ -1,6 +1,7 @@
 ---
 import type { Lang } from '../i18n/ui';
 import { useTranslations } from '../i18n/ui';
+import { href } from '../lib/paths';
 
 interface Props {
   lang: Lang;
@@ -21,9 +22,11 @@ const services = [
   <div class="wrap">
     <p class="eyebrow">{t('home.servicesHeading')}</p>
     <ul class="services__list">
-      {services.map((s) => <li>{s}</li>)}
+      {services.map((s) => <li><a href={href('/services', lang)}>{s}</a></li>)}
     </ul>
-    <p class="services__note">{t('service.inquire')}</p>
+    <p class="services__note">
+      <a href={href('/services', lang)}>{t('service.inquire')}</a>
+    </p>
   </div>
 </section>
 
@@ -45,9 +48,17 @@ const services = [
     font-size: clamp(1.15rem, 2.4vw, 1.6rem);
   }
 
+  .services__list a:hover {
+    color: var(--color-accent);
+  }
+
   .services__note {
     margin-top: 1.25rem;
     font-size: 0.85rem;
     color: var(--color-text-muted);
+  }
+
+  .services__note a:hover {
+    color: var(--color-accent);
   }
 </style>

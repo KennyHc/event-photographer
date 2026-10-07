@@ -14,6 +14,7 @@ export const ui = {
       'Documentary event photography in Madrid and across Spain — weddings, baptisms, private and corporate celebrations.',
     'site.tagline': 'Event photography in Madrid & across Spain',
     'nav.work': 'Work',
+    'nav.services': 'Services',
     'nav.about': 'About',
     'nav.contact': 'Contact',
     'nav.menu': 'Menu',
@@ -44,32 +45,70 @@ export const ui = {
     'about.heading': 'About',
     'about.kicker': 'Based in Madrid',
     'about.bio.p1':
-      "I'm Kenny, a documentary-minded event photographer based in Madrid, working across Spain and for destination events further afield.",
+      "I'm Kenny, an event photographer based in Madrid. I shoot weddings, baptisms and private celebrations across Spain.",
     'about.bio.p2':
-      'I photograph weddings, baptisms and private celebrations the way they actually happen — quietly, from the edges, without staged interruptions. My aim is a gallery that feels like the day felt, not a performance of it.',
-    'about.bio.p3':
-      "I'm available to travel for your event, in Spain or abroad.",
-    'about.howIWork': 'How I work',
-    'about.step1.title': 'Inquiry',
-    'about.step1.body':
-      "Tell me the date, location and shape of your event, and I'll confirm availability and the right coverage for you.",
-    'about.step2.title': 'Coverage',
-    'about.step2.body':
-      'On the day, I work quietly and move with the event — documenting as it unfolds, without staged interruptions.',
-    'about.step3.title': 'Delivery',
-    'about.step3.body':
-      'A curated, fully edited gallery arrives within a few weeks, ready to share and keep.',
+      'I work quietly, from the edges, without staged interruptions. The goal is a gallery that feels like the day did.',
+    'about.services.prompt': 'Want the specifics — packages, timeline, what you get?',
+    'about.services.cta': 'See Services',
     'contact.heading': 'Contact',
     'contact.intro':
       "Include the date, location and type of event, and I'll get back to you shortly.",
     'contact.email': 'Email',
     'contact.whatsapp': 'WhatsApp',
     'contact.instagram': 'Instagram',
-    'contact.based': 'Based in Madrid · Available across Spain and for destination events',
+    'contact.based': 'Based in Madrid · Available across Spain',
     '404.heading': 'Page not found',
     '404.body': "The page you're looking for doesn't exist or has moved.",
     '404.home': 'Back to home',
     'footer.rights': 'All rights reserved.',
+    'services.eyebrow': 'What to expect',
+    'services.heading': 'Services',
+    'services.packages.heading': 'Packages',
+    'services.package1.name': 'Essential',
+    'services.package1.coverage': 'Up to 2 hours',
+    'services.package1.idealFor':
+      'Ideal for baptisms, communions, birthdays and small gatherings.',
+    'services.package2.name': 'Half day',
+    'services.package2.coverage': 'Up to 5 hours',
+    'services.package2.idealFor':
+      'Ideal for ceremonies with a reception, larger celebrations and corporate events.',
+    'services.package3.name': 'Full day',
+    'services.package3.coverage': 'Up to 10 hours',
+    'services.package3.idealFor': 'Ideal for weddings, from getting ready to the party.',
+    'services.quote': 'Request a quote',
+    'services.included.heading': 'Included in every package',
+    'services.included.item1': 'Hand-picked photos, each edited for colour and light',
+    'services.included.item2':
+      'A handful of edited highlights (sneak peek) within 48 hours',
+    'services.included.item3': 'The full edited gallery in high resolution within 1 week',
+    'services.included.item4':
+      'Delivered through a private Google Drive or WeTransfer link',
+    'services.included.item5': 'Files ready for printing and sharing',
+    'services.how.heading': 'How it works',
+    'services.how.step1.title': 'Get in touch',
+    'services.how.step1.body': 'Send the date, place and type of event.',
+    'services.how.step2.title': 'Plan',
+    'services.how.step2.body':
+      'A short call to go over the schedule and the people and moments that matter.',
+    'services.how.step3.title': 'The day',
+    'services.how.step3.body': 'I work discreetly and document things as they happen.',
+    'services.how.step4.title': 'Delivery',
+    'services.how.step4.body': 'Sneak peek in 48 hours, full gallery within 1 week.',
+    'services.extras.heading': 'Extras',
+    'services.extras.travel':
+      'Travel across Spain. Based in Madrid; travel elsewhere is quoted separately.',
+    'services.extras.prints': 'Prints and albums on request.',
+    'services.faq.heading': 'FAQ',
+    'services.faq.q1': 'Do you travel?',
+    'services.faq.a1': 'Yes, anywhere in Spain. Travel outside Madrid is quoted separately.',
+    'services.faq.q2': 'How many photos will I receive?',
+    'services.faq.a2':
+      'It depends on the length of the event. You get every strong frame, edited — no near-duplicates to pad the count.',
+    'services.faq.q3': 'Do you deliver RAW files?',
+    'services.faq.a3': 'No, I deliver edited high-resolution JPEGs.',
+    'services.faq.q4': 'How do I book?',
+    'services.faq.a4':
+      "Send me a message with your date and event details and I'll confirm availability.",
   },
   es: {
     'site.title': 'Kenny He — Fotografía de eventos',
@@ -77,6 +116,7 @@ export const ui = {
       'Fotografía documental de eventos en Madrid y toda España — bodas, bautizos, celebraciones privadas y corporativas.',
     'site.tagline': 'Fotografía de eventos en Madrid y toda España',
     'nav.work': 'Trabajos',
+    'nav.services': 'Servicios',
     'nav.about': 'Sobre mí',
     'nav.contact': 'Contacto',
     'nav.menu': 'Menú',
@@ -107,31 +147,71 @@ export const ui = {
     'about.heading': 'Sobre mí',
     'about.kicker': 'Con base en Madrid',
     'about.bio.p1':
-      'Soy Kenny, fotógrafo de eventos con mirada documental, con base en Madrid y disponible para trabajar en toda España y en eventos de destino.',
+      'Soy Kenny, fotógrafo de eventos con base en Madrid. Hago bodas, bautizos y celebraciones privadas en toda España.',
     'about.bio.p2':
-      'Fotografío bodas, bautizos y celebraciones privadas tal y como suceden — en silencio, desde los márgenes, sin interrupciones ni posados forzados. Mi objetivo es una galería que se sienta como se sintió el día, no como una representación de él.',
-    'about.bio.p3': 'Estoy disponible para viajar a tu evento, dentro o fuera de España.',
-    'about.howIWork': 'Cómo trabajo',
-    'about.step1.title': 'Consulta',
-    'about.step1.body':
-      'Cuéntame la fecha, el lugar y la forma de tu evento, y te confirmaré disponibilidad y la cobertura adecuada.',
-    'about.step2.title': 'Cobertura',
-    'about.step2.body':
-      'El día del evento trabajo en silencio y me muevo con él — documentando lo que ocurre, sin interrupciones ni posados.',
-    'about.step3.title': 'Entrega',
-    'about.step3.body':
-      'Una galería editada y seleccionada con cuidado llega en pocas semanas, lista para compartir y conservar.',
+      'Trabajo en silencio, desde los márgenes, sin interrupciones ni posados. El objetivo es una galería que se sienta como se sintió el día.',
+    'about.services.prompt': '¿Quieres los detalles — paquetes, plazos, qué incluye?',
+    'about.services.cta': 'Ver Servicios',
     'contact.heading': 'Contacto',
     'contact.intro':
       'Incluye la fecha, el lugar y el tipo de evento, y te responderé en breve.',
     'contact.email': 'Correo',
     'contact.whatsapp': 'WhatsApp',
     'contact.instagram': 'Instagram',
-    'contact.based': 'Con base en Madrid · Disponible en toda España y para eventos de destino',
+    'contact.based': 'Con base en Madrid · Disponible en toda España',
     '404.heading': 'Página no encontrada',
     '404.body': 'La página que buscas no existe o se ha movido.',
     '404.home': 'Volver al inicio',
     'footer.rights': 'Todos los derechos reservados.',
+    'services.eyebrow': 'Qué esperar',
+    'services.heading': 'Servicios',
+    'services.packages.heading': 'Paquetes',
+    'services.package1.name': 'Esencial',
+    'services.package1.coverage': 'Hasta 2 horas',
+    'services.package1.idealFor':
+      'Ideal para bautizos, comuniones, cumpleaños y reuniones pequeñas.',
+    'services.package2.name': 'Media jornada',
+    'services.package2.coverage': 'Hasta 5 horas',
+    'services.package2.idealFor':
+      'Ideal para ceremonias con convite, celebraciones más grandes y eventos corporativos.',
+    'services.package3.name': 'Jornada completa',
+    'services.package3.coverage': 'Hasta 10 horas',
+    'services.package3.idealFor': 'Ideal para bodas, desde los preparativos hasta la fiesta.',
+    'services.quote': 'Pedir presupuesto',
+    'services.included.heading': 'Incluido en todos los paquetes',
+    'services.included.item1': 'Fotos seleccionadas una a una y editadas en color y luz',
+    'services.included.item2':
+      'Un puñado de fotos destacadas editadas (avance) en 48 horas',
+    'services.included.item3': 'La galería completa editada en alta resolución en 1 semana',
+    'services.included.item4':
+      'Entrega mediante un enlace privado de Google Drive o WeTransfer',
+    'services.included.item5': 'Archivos listos para imprimir y compartir',
+    'services.how.heading': 'Cómo funciona',
+    'services.how.step1.title': 'Contacto',
+    'services.how.step1.body': 'Envíame la fecha, el lugar y el tipo de evento.',
+    'services.how.step2.title': 'Planificación',
+    'services.how.step2.body':
+      'Una llamada breve para repasar el horario y las personas y momentos importantes.',
+    'services.how.step3.title': 'El día',
+    'services.how.step3.body': 'Trabajo con discreción y documento lo que ocurre.',
+    'services.how.step4.title': 'Entrega',
+    'services.how.step4.body': 'Avance en 48 horas, galería completa en 1 semana.',
+    'services.extras.heading': 'Extras',
+    'services.extras.travel':
+      'Desplazamientos por toda España. Con base en Madrid; los desplazamientos fuera se presupuestan aparte.',
+    'services.extras.prints': 'Impresiones y álbumes a petición.',
+    'services.faq.heading': 'Preguntas frecuentes',
+    'services.faq.q1': '¿Te desplazas?',
+    'services.faq.a1':
+      'Sí, a cualquier lugar de España. Los desplazamientos fuera de Madrid se presupuestan por separado.',
+    'services.faq.q2': '¿Cuántas fotos recibiré?',
+    'services.faq.a2':
+      'Depende de la duración del evento. Recibes cada foto que funciona, editada — sin duplicados para inflar el número.',
+    'services.faq.q3': '¿Entregas los archivos RAW?',
+    'services.faq.a3': 'No, entrego JPEG en alta resolución ya editados.',
+    'services.faq.q4': '¿Cómo reservo?',
+    'services.faq.a4':
+      'Envíame un mensaje con tu fecha y los detalles del evento y te confirmaré disponibilidad.',
   },
 } as const;
 
