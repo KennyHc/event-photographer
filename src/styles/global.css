@@ -16,11 +16,18 @@
   --font-sans: 'Inter', system-ui, sans-serif;
   --maxw: 1280px;
   --gutter: 1.5rem;
+  --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 @media (min-width: 768px) {
   :root {
     --gutter: 2.5rem;
+  }
+}
+
+@media (min-width: 1100px) {
+  :root {
+    --gutter: 4.5rem;
   }
 }
 
@@ -74,6 +81,12 @@ a {
 
 h1,
 h2,
+h3 {
+  text-wrap: balance;
+}
+
+h1,
+h2,
 h3,
 h4 {
   font-family: var(--font-serif);
@@ -84,6 +97,7 @@ h4 {
 
 p {
   margin: 0;
+  text-wrap: pretty;
 }
 
 button {
@@ -135,7 +149,7 @@ button:focus-visible,
   letter-spacing: 0.03em;
   background: transparent;
   color: var(--color-text);
-  transition: background 0.2s ease, color 0.2s ease;
+  transition: background 0.2s var(--ease), color 0.2s var(--ease);
 }
 
 .btn:hover {
@@ -159,7 +173,7 @@ button:focus-visible,
    BaseLayout's <head>) opts an unrevealed `.fade-in` into the hidden
    starting state that the IntersectionObserver in site.ts then reveals. */
 .fade-in {
-  transition: opacity 0.5s ease, transform 0.5s ease;
+  transition: opacity 0.5s var(--ease), transform 0.5s var(--ease);
 }
 
 .js .fade-in:not(.is-visible) {
@@ -182,8 +196,40 @@ button:focus-visible,
   }
 }
 
+/* Page transitions (ClientRouter): a quick fade, and a slower morph for
+   shared elements such as event covers. */
+::view-transition-old(root) {
+  animation-duration: 0.18s !important;
+  animation-timing-function: var(--ease) !important;
+}
+
+::view-transition-new(root) {
+  animation-duration: 0.3s !important;
+  animation-timing-function: var(--ease) !important;
+}
+
+::view-transition-group(*) {
+  animation-duration: 0.6s;
+  animation-timing-function: var(--ease);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+}
+
+/* --sbw is the scrollbar width, set by the lightbox so locking scroll
+   doesn't shift the layout. */
 body.lightbox-open {
   overflow: hidden;
+  padding-right: var(--sbw, 0);
+}
+
+body.lightbox-open .header {
+  padding-right: var(--sbw, 0);
 }
 
 /* Lightbox */
@@ -192,28 +238,57 @@ body.lightbox-open {
   inset: 0;
   z-index: 100;
   display: none;
-  align-items: center;
-  justify-content: center;
-  background: rgba(10, 10, 10, 0.92);
-  padding: 1.5rem;
 }
 
 .lightbox.is-open {
-  display: flex;
+  display: block;
 }
 
+.lightbox__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 10, 10, 0.92);
+  opacity: 0;
+  transition: opacity 0.4s var(--ease);
+}
+
+.lightbox.is-visible .lightbox__backdrop {
+  opacity: 1;
+}
+
+/* Sized and positioned in px by site.ts, which animates a transform on it. */
 .lightbox__img {
-  max-width: min(92vw, 1400px);
-  max-height: 88vh;
-  width: auto;
-  height: auto;
-  object-fit: contain;
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  max-width: none;
+  transform-origin: 0 0;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
 }
 
 .lightbox__close,
-.lightbox__arrow {
+.lightbox__arrow,
+.lightbox__counter {
   position: fixed;
+  z-index: 2;
+  opacity: 0;
+  transition: opacity 0.4s var(--ease), background 0.2s var(--ease);
+}
+
+.lightbox.is-visible .lightbox__close,
+.lightbox.is-visible .lightbox__arrow {
+  opacity: 1;
+  transition-delay: 0.25s, 0s;
+}
+
+.lightbox.is-visible .lightbox__counter {
+  opacity: 1;
+  transition-delay: 0.35s;
+}
+
+.lightbox__close,
+.lightbox__arrow {
   background: transparent;
   border: none;
   color: #f7f5f2;
@@ -223,9 +298,23 @@ body.lightbox-open {
   border-radius: 999px;
 }
 
-.lightbox__close:hover,
-.lightbox__arrow:hover {
-  background: rgba(255, 255, 255, 0.12);
+@media (hover: hover) and (pointer: fine) {
+  .lightbox__close:hover,
+  .lightbox__arrow:hover {
+    background: rgba(255, 255, 255, 0.12);
+  }
+}
+
+.lightbox__counter {
+  left: 0;
+  right: 0;
+  bottom: 1.25rem;
+  text-align: center;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  color: rgba(247, 245, 242, 0.7);
+  pointer-events: none;
 }
 
 .lightbox__close {
@@ -256,5 +345,14 @@ body.lightbox-open {
   }
   .lightbox__arrow--next {
     right: 0.25rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lightbox__backdrop,
+  .lightbox__close,
+  .lightbox__arrow,
+  .lightbox__counter {
+    transition: none;
   }
 }

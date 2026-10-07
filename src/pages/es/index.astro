@@ -38,7 +38,10 @@ const heroCover = getCover(getEventImages('wedding-bali'));
     <div class="wrap hero__content">
       <p class="eyebrow hero__eyebrow">{t('site.tagline')}</p>
       <h1 class="hero__title">Kenny He</h1>
-      <p class="hero__scroll">{t('home.scroll')}</p>
+      <div class="hero__scroll">
+        <span class="hero__scroll-line" aria-hidden="true"></span>
+        <span class="visually-hidden">{t('home.scroll')}</span>
+      </div>
     </div>
   </section>
 
@@ -109,10 +112,42 @@ const heroCover = getCover(getEventImages('wedding-bali'));
 
   .hero__scroll {
     margin-top: 2.5rem;
-    font-size: 0.78rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.75);
+  }
+
+  .hero__scroll-line {
+    display: block;
+    position: relative;
+    width: 1px;
+    height: 48px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.25);
+  }
+
+  .hero__scroll-line::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.9);
+    transform: translateY(-100%);
+    animation: scroll-pulse 2.4s var(--ease) infinite;
+  }
+
+  @keyframes scroll-pulse {
+    0% {
+      transform: translateY(-100%);
+    }
+    70%,
+    100% {
+      transform: translateY(100%);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero__scroll-line::after {
+      animation: none;
+      transform: none;
+      background: rgba(255, 255, 255, 0.5);
+    }
   }
 
   .intro {

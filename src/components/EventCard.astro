@@ -3,7 +3,7 @@ import { Image } from 'astro:assets';
 import type { Lang } from '../i18n/ui';
 import { useTranslations } from '../i18n/ui';
 import { href } from '../lib/paths';
-import { getCover, getEventImages } from '../lib/images';
+import { getCover, getEventImages, getShowcase } from '../lib/images';
 
 interface Props {
   lang: Lang;
@@ -15,11 +15,28 @@ interface Props {
 
 const { lang, slug, title, location, date } = Astro.props;
 const t = useTranslations(lang);
-const cover = getCover(getEventImages(slug));
+const images = getEventImages(slug);
+const cover = getCover(images);
+// Two more photos from the event, fanned out behind the cover on hover.
+const prints = getShowcase(images.filter((img) => img !== cover), 2);
 ---
 
 <a class="event-card fade-in" href={href(`/work/${slug}`, lang)}>
   <div class="event-card__media">
+    {
+      prints.map((print, i) => (
+        <div class={`event-card__print event-card__print--${i === 0 ? 'left' : 'right'}`} aria-hidden="true">
+          <Image
+            src={print.file}
+            alt=""
+            widths={[400, 700]}
+            sizes="(min-width: 900px) 50vw, 100vw"
+            loading="lazy"
+            format="webp"
+          />
+        </div>
+      ))
+    }
     <Image
       src={cover.file}
       alt={title}
@@ -27,11 +44,12 @@ const cover = getCover(getEventImages(slug));
       sizes="(min-width: 900px) 50vw, 100vw"
       loading="lazy"
       format="webp"
+      transition:name={`cover-${slug}`}
     />
   </div>
   <div class="event-card__body">
     <p class="eyebrow">{location} · {date}</p>
-    <h3 class="event-card__title">{title}</h3>
+    <h3 class="event-card__title"><span class="event-card__title-text">{title}</span></h3>
     <span class="event-card__link">{t('work.viewStory')} &rarr;</span>
   </div>
 </a>
@@ -42,9 +60,11 @@ const cover = getCover(getEventImages(slug));
     color: var(--color-text);
   }
 
+  /* No overflow clipping: the prints fan out past the cover's edges. */
   .event-card__media {
+    position: relative;
+    isolation: isolate;
     aspect-ratio: 3 / 2;
-    overflow: hidden;
     background: var(--color-bg-raised);
   }
 
@@ -52,20 +72,36 @@ const cover = getCover(getEventImages(slug));
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.6s ease;
   }
 
-  .event-card:hover .event-card__media :global(img) {
-    transform: scale(1.035);
+  .event-card__media > :global(img) {
+    position: relative;
+    z-index: 2;
+    transition: transform 0.6s var(--ease);
+  }
+
+  .event-card__print {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    overflow: hidden;
+    background: var(--color-bg-raised);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+    transition: transform 0.6s var(--ease);
   }
 
   .event-card__body {
-    padding-top: 1.1rem;
+    padding-top: 1.5rem;
   }
 
   .event-card__title {
     font-size: 1.5rem;
     margin-top: 0.35rem;
+  }
+
+  .event-card__title-text {
+    background: linear-gradient(currentColor, currentColor) no-repeat 0 100% / 0 1px;
+    transition: background-size 0.5s var(--ease);
   }
 
   .event-card__link {
@@ -74,9 +110,42 @@ const cover = getCover(getEventImages(slug));
     font-size: 0.82rem;
     letter-spacing: 0.02em;
     color: var(--color-text-muted);
+    transition: color 0.3s var(--ease);
   }
 
-  .event-card:hover .event-card__link {
-    color: var(--color-accent);
+  @media (hover: hover) and (pointer: fine) {
+    .event-card:hover .event-card__media > :global(img),
+    .event-card:focus-visible .event-card__media > :global(img) {
+      transform: scale(1.02);
+    }
+
+    .event-card:hover .event-card__print--left,
+    .event-card:focus-visible .event-card__print--left {
+      transform: translateX(-3.5%) rotate(-3.5deg);
+    }
+
+    .event-card:hover .event-card__print--right,
+    .event-card:focus-visible .event-card__print--right {
+      transform: translateX(3.5%) rotate(3deg);
+    }
+
+    .event-card:hover .event-card__title-text,
+    .event-card:focus-visible .event-card__title-text {
+      background-size: 100% 1px;
+    }
+
+    .event-card:hover .event-card__link,
+    .event-card:focus-visible .event-card__link {
+      color: var(--color-accent);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .event-card__media > :global(img),
+    .event-card__print,
+    .event-card__title-text,
+    .event-card__link {
+      transition: none;
+    }
   }
 </style>

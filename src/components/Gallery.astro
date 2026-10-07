@@ -28,6 +28,9 @@ const fullImages = await Promise.all(
         data-alt={`${altPrefix} ${i + 1}`}
         aria-label={`${altPrefix} ${i + 1}`}
       >
+        <span class="gallery__label" aria-hidden="true">
+          {String(i + 1).padStart(2, '0')}
+        </span>
         <Image
           src={img.file}
           alt={`${altPrefix} ${i + 1}`}
@@ -47,25 +50,63 @@ const fullImages = await Promise.all(
     column-gap: 0.9rem;
   }
 
+  /* The bottom margin leaves room for the index label to slide into. */
   .gallery__item {
+    position: relative;
+    isolation: isolate;
     display: block;
     width: 100%;
     padding: 0;
-    margin: 0 0 0.9rem;
+    margin: 0 0 2rem;
     border: none;
-    background: var(--color-bg-raised);
+    background: none;
+    cursor: zoom-in;
     break-inside: avoid;
     -webkit-column-break-inside: avoid;
   }
 
   .gallery__item :global(img) {
+    position: relative;
+    z-index: 1;
     width: 100%;
     height: auto;
-    transition: opacity 0.2s ease;
+    background: var(--color-bg-raised);
+    transition: transform 0.5s var(--ease);
   }
 
-  .gallery__item:hover :global(img) {
-    opacity: 0.92;
+  /* Tucked under the photo's bottom edge until hover. */
+  .gallery__label {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    z-index: 0;
+    height: 22px;
+    font-size: 0.68rem;
+    font-weight: 600;
+    line-height: 22px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    transition: transform 0.5s var(--ease);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .gallery__item:hover :global(img),
+    .gallery__item:focus-visible :global(img) {
+      transform: translateY(-3px);
+    }
+
+    .gallery__item:hover .gallery__label,
+    .gallery__item:focus-visible .gallery__label {
+      transform: translateY(22px);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .gallery__item :global(img),
+    .gallery__label {
+      transition: none;
+    }
   }
 
   @media (min-width: 720px) {
@@ -74,7 +115,7 @@ const fullImages = await Promise.all(
       column-gap: 1.25rem;
     }
     .gallery__item {
-      margin-bottom: 1.25rem;
+      margin-bottom: 2.25rem;
     }
   }
 </style>
