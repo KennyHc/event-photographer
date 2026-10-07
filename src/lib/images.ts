@@ -31,3 +31,8 @@ export function getCover(images: EventImage[]): EventImage {
 export function getShowcase(images: EventImage[], max = 30): EventImage[] {
   return images.slice(0, max);
 }
+
+/** A photo whose filename starts with `prefix`, or `fallback` if none matches. */
+export function findImage(images: EventImage[], prefix: string, fallback: EventImage): EventImage {
+  return images.find((img) => img.name.startsWith(prefix)) ?? fallback;
+}
