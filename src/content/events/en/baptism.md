@@ -1,7 +1,7 @@
 ---
 title: "An Intimate Baptism"
-location: "Spain"
-date: "2026"
+location: "Madrid, Spain"
+date: "September 2026"
 summary: "A baptism in a small parish church, with close family."
 order: 2
 ---

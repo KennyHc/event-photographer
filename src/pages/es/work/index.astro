@@ -9,7 +9,7 @@ const t = useTranslations(lang);
 const events = (await getCollection('eventsEs')).sort((a, b) => a.data.order - b.data.order);
 ---
 
-<BaseLayout lang={lang} path="/work" title={`${t('work.heading')} — ${t('site.title')}`}>
+<BaseLayout lang={lang} path="/work" title={`${t('work.heading')} | ${t('site.title')}`}>
   <section class="wrap work-page">
     <header class="work-page__header fade-in">
       <p class="eyebrow">{t('work.heading')}</p>

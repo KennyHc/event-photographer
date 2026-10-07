@@ -9,7 +9,7 @@ const lang = 'es' as const;
 const t = useTranslations(lang);
 ---
 
-<BaseLayout lang={lang} path="/about" title={`${t('about.heading')} — ${t('site.title')}`}>
+<BaseLayout lang={lang} path="/about" title={`${t('about.heading')} | ${t('site.title')}`}>
   <section class="wrap about">
     <div class="about__intro fade-in">
       <p class="eyebrow">{t('about.kicker')}</p>
@@ -30,6 +30,7 @@ const t = useTranslations(lang);
       <div class="about__bio fade-in">
         <p>{t('about.bio.p1')}</p>
         <p>{t('about.bio.p2')}</p>
+        <p>{t('about.bio.p3')}</p>
         <p class="about__services-note">
           {t('about.services.prompt')}{' '}
           <a href={href('/services', lang)}>{t('about.services.cta')}</a>

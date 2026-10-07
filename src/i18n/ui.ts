@@ -9,9 +9,9 @@ export const defaultLang: Lang = 'en';
 
 export const ui = {
   en: {
-    'site.title': 'Kenny He — Event Photography',
+    'site.title': 'Kenny He · Event Photography',
     'site.description':
-      'Documentary event photography in Madrid and across Spain — weddings, baptisms, private and corporate celebrations.',
+      'Documentary event photography in Madrid and across Spain: weddings, baptisms, private and corporate celebrations.',
     'site.tagline': 'Event photography in Madrid & across Spain',
     'nav.work': 'Work',
     'nav.services': 'Services',
@@ -20,7 +20,7 @@ export const ui = {
     'nav.menu': 'Menu',
     'nav.switchTo': 'ES',
     'home.intro':
-      'Documentary, unobtrusive event photography — natural moments, told honestly.',
+      'Documentary, unobtrusive event photography. Natural moments, told honestly.',
     'home.scroll': 'Scroll',
     'home.selectedWork': 'Selected work',
     'home.servicesHeading': 'Services',
@@ -47,8 +47,10 @@ export const ui = {
     'about.bio.p1':
       "I'm Kenny, an event photographer based in Madrid. I shoot weddings, baptisms and private celebrations across Spain.",
     'about.bio.p2':
-      'I work quietly, from the edges, without staged interruptions. The goal is a gallery that feels like the day did.',
-    'about.services.prompt': 'Want the specifics — packages, timeline, what you get?',
+      "I was born in Peru and lived in China and Canada before settling in Spain. I speak Spanish, English and Mandarin, so I can work comfortably with families and guests from different backgrounds.",
+    'about.bio.p3':
+      'Before any event, I take the time to understand what matters to you. On the day, I let moments happen as naturally as they can, without staging or interruptions.',
+    'about.services.prompt': "Want the details on packages, timing and what's included?",
     'about.services.cta': 'See Services',
     'contact.heading': 'Contact',
     'contact.intro':
@@ -103,7 +105,7 @@ export const ui = {
     'services.faq.a1': 'Yes, anywhere in Spain. Travel outside Madrid is quoted separately.',
     'services.faq.q2': 'How many photos will I receive?',
     'services.faq.a2':
-      'It depends on the length of the event. You get every strong frame, edited — no near-duplicates to pad the count.',
+      'It depends on the length of the event. You get every strong frame, edited, with no near-duplicates to pad the count.',
     'services.faq.q3': 'Do you deliver RAW files?',
     'services.faq.a3': 'No, I deliver edited high-resolution JPEGs.',
     'services.faq.q4': 'How do I book?',
@@ -111,9 +113,9 @@ export const ui = {
       "Send me a message with your date and event details and I'll confirm availability.",
   },
   es: {
-    'site.title': 'Kenny He — Fotografía de eventos',
+    'site.title': 'Kenny He · Fotografía de eventos',
     'site.description':
-      'Fotografía documental de eventos en Madrid y toda España — bodas, bautizos, celebraciones privadas y corporativas.',
+      'Fotografía documental de eventos en Madrid y toda España: bodas, bautizos, celebraciones privadas y corporativas.',
     'site.tagline': 'Fotografía de eventos en Madrid y toda España',
     'nav.work': 'Trabajos',
     'nav.services': 'Servicios',
@@ -122,7 +124,7 @@ export const ui = {
     'nav.menu': 'Menú',
     'nav.switchTo': 'EN',
     'home.intro':
-      'Fotografía de eventos documental y discreta — momentos naturales, contados con honestidad.',
+      'Fotografía de eventos documental y discreta. Momentos naturales, contados con honestidad.',
     'home.scroll': 'Desplázate',
     'home.selectedWork': 'Trabajos seleccionados',
     'home.servicesHeading': 'Servicios',
@@ -149,8 +151,10 @@ export const ui = {
     'about.bio.p1':
       'Soy Kenny, fotógrafo de eventos con base en Madrid. Hago bodas, bautizos y celebraciones privadas en toda España.',
     'about.bio.p2':
-      'Trabajo en silencio, desde los márgenes, sin interrupciones ni posados. El objetivo es una galería que se sienta como se sintió el día.',
-    'about.services.prompt': '¿Quieres los detalles — paquetes, plazos, qué incluye?',
+      'Nací en Perú y viví en China y Canadá antes de instalarme en España. Hablo español, inglés y mandarín, así que puedo trabajar con familias e invitados de distintos orígenes.',
+    'about.bio.p3':
+      'Antes de cada evento, me tomo el tiempo de entender qué es importante para ti. El día del evento, dejo que los momentos ocurran de la forma más natural posible, sin posados ni interrupciones.',
+    'about.services.prompt': '¿Quieres conocer los paquetes, los plazos y lo que incluye cada uno?',
     'about.services.cta': 'Ver Servicios',
     'contact.heading': 'Contacto',
     'contact.intro':
@@ -206,7 +210,7 @@ export const ui = {
       'Sí, a cualquier lugar de España. Los desplazamientos fuera de Madrid se presupuestan por separado.',
     'services.faq.q2': '¿Cuántas fotos recibiré?',
     'services.faq.a2':
-      'Depende de la duración del evento. Recibes cada foto que funciona, editada — sin duplicados para inflar el número.',
+      'Depende de la duración del evento. Recibes cada foto que funciona, editada y sin duplicados para inflar el número.',
     'services.faq.q3': '¿Entregas los archivos RAW?',
     'services.faq.a3': 'No, entrego JPEG en alta resolución ya editados.',
     'services.faq.q4': '¿Cómo reservo?',

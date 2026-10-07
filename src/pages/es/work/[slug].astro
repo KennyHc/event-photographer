@@ -33,7 +33,7 @@ const showcase = getShowcase(images);
 <BaseLayout
   lang={lang}
   path={`/work/${event.id}`}
-  title={`${event.data.title} — ${t('site.title')}`}
+  title={`${event.data.title} | ${t('site.title')}`}
   description={event.data.summary}
   ogImage={cover.file}
 >
@@ -62,7 +62,7 @@ const showcase = getShowcase(images);
 
     <div class="wrap story__gallery">
       <p class="eyebrow fade-in">{t('event.gallery')}</p>
-      <Gallery images={showcase} altPrefix={`${event.data.title} — ${t('event.galleryAlt')}`} />
+      <Gallery images={showcase} altPrefix={`${event.data.title}, ${t('event.galleryAlt')}`} />
     </div>
 
     {
@@ -71,7 +71,7 @@ const showcase = getShowcase(images);
           <p class="eyebrow">{t('event.testimonial')}</p>
           <blockquote>
             <p>&ldquo;{event.data.testimonial.quote}&rdquo;</p>
-            <cite>— {event.data.testimonial.author}</cite>
+            <cite>{event.data.testimonial.author}</cite>
           </blockquote>
         </div>
       )
