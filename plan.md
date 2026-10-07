@@ -1,6 +1,6 @@
 # Next steps
 
-Status: site builds cleanly (EN + ES, 16 pages). Pages: Home, Work, story pages, Services, About, Contact, 404. Not yet deployed.
+Status: site builds cleanly (EN + ES, 16 pages). Pages: Home, Work, story pages, Services, About, Contact, 404. Live at https://kennyhc.github.io/event-photographer/ (deploys on every push to `main`).
 
 ## 1. Before the first deploy (you)
 
@@ -11,8 +11,8 @@ Status: site builds cleanly (EN + ES, 16 pages). Pages: Home, Work, story pages,
 - [x] **Add your portrait.** About uses `portrait1.jpg`; `portrait2.jpg` is the alternative.
 - [ ] **Get consent.** Written OK from your sister and Michelle to publish, especially photos of the baby and identifiable guests.
 - [x] **Wedding date** set to September 2025.
-- [ ] **GitHub → Settings → Pages → Source: GitHub Actions.**
-- [ ] Commit and push to `main`. The site goes live at https://kennyhc.github.io/event-photographer/
+- [x] **GitHub Pages enabled** (repo made public; Pages needs a paid plan for private repos).
+- [x] First deploy done.
 
 ## 2. Content (you)
 
@@ -25,13 +25,13 @@ Status: site builds cleanly (EN + ES, 16 pages). Pages: Home, Work, story pages,
 Highest impact first:
 
 - [ ] **Editorial gallery layout.** Alternate a full-width landscape with portrait pairs instead of equal masonry columns; one column on phones.
-- [ ] **Story cover.** Taller 4:5 crop on mobile; full-screen cover with title overlay on desktop.
-- [ ] **Page transitions.** Astro View Transitions, with the event card image morphing into the story cover.
+- [x] **Story cover.** Taller 4:5 crop on mobile; full-screen cover with title overlay on desktop.
+- [x] **Page transitions.** Astro View Transitions, with the event card image morphing into the story cover.
 - [ ] **Image placeholders.** Blurred preview or dominant colour while photos load.
 - [ ] **Contact.** WhatsApp as the primary button with a pre-filled message ("Hi Kenny, I'm planning a ___ on ___ in ___"); copy-email button.
-- [ ] **Lightbox.** "3 / 24" counter, preload neighbouring images, crossfade between photos.
+- [x] **Lightbox.** "3 / 24" counter, preload neighbouring images, crossfade between photos.
 - [ ] **Home.** Replace the "SCROLL" label with a subtle cue; testimonial block once available; tidy the services row.
-- [ ] **Typography.** `text-wrap: balance` on headings and `pretty` on paragraphs; one consistent spacing scale.
+- [x] **Typography.** `text-wrap: balance` on headings and `pretty` on paragraphs; one consistent spacing scale.
 - [ ] **Header.** Hide on scroll down, show on scroll up.
 - [ ] **Sharing previews.** Per-event Open Graph image so WhatsApp and Instagram links show the cover.
 
