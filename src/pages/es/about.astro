@@ -2,16 +2,11 @@
 import { Image } from 'astro:assets';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { useTranslations } from '../../i18n/ui';
-import portrait from '../../assets/about/portrait.jpg';
+import { href } from '../../lib/paths';
+import portrait from '../../assets/about/portrait1.jpg';
 
 const lang = 'es' as const;
 const t = useTranslations(lang);
-
-const steps = [
-  { title: t('about.step1.title'), body: t('about.step1.body') },
-  { title: t('about.step2.title'), body: t('about.step2.body') },
-  { title: t('about.step3.title'), body: t('about.step3.body') },
-];
 ---
 
 <BaseLayout lang={lang} path="/about" title={`${t('about.heading')} — ${t('site.title')}`}>
@@ -35,23 +30,11 @@ const steps = [
       <div class="about__bio fade-in">
         <p>{t('about.bio.p1')}</p>
         <p>{t('about.bio.p2')}</p>
-        <p>{t('about.bio.p3')}</p>
+        <p class="about__services-note">
+          {t('about.services.prompt')}{' '}
+          <a href={href('/services', lang)}>{t('about.services.cta')}</a>
+        </p>
       </div>
-    </div>
-
-    <div class="about__how fade-in">
-      <p class="eyebrow">{t('about.howIWork')}</p>
-      <ol class="about__steps">
-        {
-          steps.map((step, i) => (
-            <li>
-              <span class="about__step-index">{String(i + 1).padStart(2, '0')}</span>
-              <h3>{step.title}</h3>
-              <p>{step.body}</p>
-            </li>
-          ))
-        }
-      </ol>
     </div>
   </section>
 </BaseLayout>
@@ -93,45 +76,20 @@ const steps = [
     font-size: clamp(1.25rem, 2.6vw, 1.6rem);
   }
 
-  .about__how {
-    margin-top: 5rem;
-    padding-top: 3rem;
-    border-top: 1px solid var(--color-border);
-  }
-
-  .about__steps {
-    list-style: none;
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 2rem;
-    margin: 1.75rem 0 0;
-    padding: 0;
-  }
-
-  .about__steps h3 {
-    font-size: 1.25rem;
-    margin-top: 0.6rem;
-  }
-
-  .about__steps p {
-    margin-top: 0.5rem;
+  .about__services-note {
+    font-size: 0.95rem;
     color: var(--color-text-muted);
   }
 
-  .about__step-index {
-    font-family: var(--font-serif);
-    font-size: 0.9rem;
-    color: var(--color-accent);
-    letter-spacing: 0.05em;
+  .about__services-note a {
+    color: var(--color-text);
+    border-bottom: 1px solid var(--color-accent);
   }
 
   @media (min-width: 720px) {
     .about__grid {
       grid-template-columns: 0.9fr 1.1fr;
       gap: 3.5rem;
-    }
-    .about__steps {
-      grid-template-columns: repeat(3, 1fr);
     }
   }
 </style>

@@ -27,7 +27,7 @@ const nextEvent = sorted[(idx + 1) % sorted.length];
 
 const images = getEventImages(event.id);
 const cover = getCover(images);
-const showcase = getShowcase(images, 10);
+const showcase = getShowcase(images);
 ---
 
 <BaseLayout
@@ -47,6 +47,7 @@ const showcase = getShowcase(images, 10);
         loading="eager"
         format="webp"
         class="story__cover-img"
+        transition:name={`cover-${event.id}`}
       />
     </div>
 
@@ -92,6 +93,7 @@ const showcase = getShowcase(images, 10);
 
 <style>
   .story__cover {
+    width: 100%;
     aspect-ratio: 16 / 10;
     max-height: 82vh;
     overflow: hidden;
@@ -173,6 +175,12 @@ const showcase = getShowcase(images, 10);
     font-size: 0.82rem;
     color: var(--color-text-muted);
     white-space: nowrap;
+  }
+
+  @media (max-width: 719px) {
+    .story__cover {
+      aspect-ratio: 4 / 5;
+    }
   }
 
   @media (max-width: 640px) {
