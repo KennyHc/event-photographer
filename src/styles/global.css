@@ -221,14 +221,16 @@ button:focus-visible,
   }
 }
 
-/* --sbw is the scrollbar width, set by the lightbox so locking scroll
-   doesn't shift the layout. */
-body.lightbox-open {
+/* --sbw is the scrollbar width, set by the lightbox and the mobile nav so
+   locking scroll doesn't shift the layout. */
+body.lightbox-open,
+body.nav-open {
   overflow: hidden;
   padding-right: var(--sbw, 0);
 }
 
-body.lightbox-open .header {
+body.lightbox-open .header,
+body.nav-open .header {
   padding-right: var(--sbw, 0);
 }
 

@@ -64,25 +64,92 @@ function setupFadeIns() {
 }
 
 function setupNav() {
-  const toggle = document.querySelector<HTMLButtonElement>('[data-nav-toggle]');
-  const panel = document.querySelector<HTMLElement>('[data-nav-panel]');
-  if (!toggle || !panel) return;
+  const toggleEl = document.querySelector<HTMLButtonElement>('[data-nav-toggle]');
+  const panelEl = document.querySelector<HTMLElement>('[data-nav-panel]');
+  const headerEl = document.querySelector<HTMLElement>('[data-header]');
+  if (!toggleEl || !panelEl || !headerEl) return;
+  const toggle = toggleEl;
+  const panel = panelEl;
+  const header = headerEl;
 
-  toggle.addEventListener('click', () => {
-    const isOpen = panel.classList.toggle('is-open');
-    toggle.setAttribute('aria-expanded', String(isOpen));
-    document.body.classList.toggle('nav-open', isOpen);
-  });
+  const desktop = window.matchMedia('(min-width: 860px)');
+  let isOpen = false;
+
+  function setOpen(open: boolean, restoreFocus = true) {
+    if (open === isOpen) return;
+    isOpen = open;
+    if (open) {
+      const gap = window.innerWidth - document.documentElement.clientWidth;
+      document.documentElement.style.setProperty('--sbw', `${gap}px`);
+    } else {
+      document.documentElement.style.removeProperty('--sbw');
+    }
+    panel.classList.toggle('is-open', open);
+    header.classList.toggle('is-menu-open', open);
+    document.body.classList.toggle('nav-open', open);
+    toggle.setAttribute('aria-expanded', String(open));
+    toggle.setAttribute(
+      'aria-label',
+      toggle.getAttribute(open ? 'data-label-close' : 'data-label-open') ?? '',
+    );
+    if (open) {
+      document.addEventListener('keydown', onKeydown);
+    } else {
+      document.removeEventListener('keydown', onKeydown);
+      if (restoreFocus) toggle.focus({ preventScroll: true });
+    }
+  }
+
+  function onKeydown(e: KeyboardEvent) {
+    if (e.key === 'Escape') {
+      setOpen(false);
+      return;
+    }
+    if (e.key !== 'Tab') return;
+    // Keep focus inside the header bar and the panel.
+    const items = Array.from(
+      header.querySelectorAll<HTMLElement>('a[href], button'),
+    ).filter((el) => el.offsetParent !== null || el === toggle);
+    if (!items.length) return;
+    const first = items[0];
+    const last = items[items.length - 1];
+    const active = document.activeElement as HTMLElement | null;
+    if (!active || !header.contains(active)) {
+      e.preventDefault();
+      first.focus();
+    } else if (e.shiftKey && active === first) {
+      e.preventDefault();
+      last.focus();
+    } else if (!e.shiftKey && active === last) {
+      e.preventDefault();
+      first.focus();
+    }
+  }
+
+  const onToggle = () => setOpen(!isOpen);
+  const onLinkClick = () => setOpen(false, false);
+  const onBreakpoint = () => {
+    if (desktop.matches) setOpen(false, false);
+  };
 
   // Start closed, in case the previous page was left with the menu open.
   document.body.classList.remove('nav-open');
+  document.documentElement.style.removeProperty('--sbw');
 
-  panel.querySelectorAll('a').forEach((link) => {
-    link.addEventListener('click', () => {
-      panel.classList.remove('is-open');
-      toggle.setAttribute('aria-expanded', 'false');
+  const links = panel.querySelectorAll('a');
+  toggle.addEventListener('click', onToggle);
+  links.forEach((link) => link.addEventListener('click', onLinkClick));
+  desktop.addEventListener('change', onBreakpoint);
+
+  cleanups.push(() => {
+    toggle.removeEventListener('click', onToggle);
+    links.forEach((link) => link.removeEventListener('click', onLinkClick));
+    desktop.removeEventListener('change', onBreakpoint);
+    document.removeEventListener('keydown', onKeydown);
+    if (isOpen) {
       document.body.classList.remove('nav-open');
-    });
+      document.documentElement.style.removeProperty('--sbw');
+    }
   });
 }
 

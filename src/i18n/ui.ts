@@ -17,7 +17,8 @@ export const ui = {
     'nav.services': 'Services',
     'nav.about': 'About',
     'nav.contact': 'Contact',
-    'nav.menu': 'Menu',
+    'nav.openMenu': 'Open menu',
+    'nav.closeMenu': 'Close menu',
     'nav.switchTo': 'ES',
     'home.intro':
       'Documentary, unobtrusive event photography. Natural moments, told honestly.',
@@ -121,7 +122,8 @@ export const ui = {
     'nav.services': 'Servicios',
     'nav.about': 'Sobre mí',
     'nav.contact': 'Contacto',
-    'nav.menu': 'Menú',
+    'nav.openMenu': 'Abrir menú',
+    'nav.closeMenu': 'Cerrar menú',
     'nav.switchTo': 'EN',
     'home.intro':
       'Fotografía de eventos documental y discreta. Momentos naturales, contados con honestidad.',
