@@ -11,16 +11,19 @@ const packages = [
   {
     name: t('services.package1.name'),
     coverage: t('services.package1.coverage'),
+    price: t('services.package1.price'),
     idealFor: t('services.package1.idealFor'),
   },
   {
     name: t('services.package2.name'),
     coverage: t('services.package2.coverage'),
+    price: t('services.package2.price'),
     idealFor: t('services.package2.idealFor'),
   },
   {
     name: t('services.package3.name'),
     coverage: t('services.package3.coverage'),
+    price: t('services.package3.price'),
     idealFor: t('services.package3.idealFor'),
   },
 ];
@@ -69,6 +72,10 @@ const faqs = [
             <div class="package-card">
               <h3>{pkg.name}</h3>
               <p class="package-card__coverage">{pkg.coverage}</p>
+              <div class="package-card__price">
+                <p class="eyebrow">{t('services.launch')}</p>
+                <p class="package-card__amount">{pkg.price}</p>
+              </div>
               <p class="package-card__ideal">{pkg.idealFor}</p>
               <a class="btn" href={href('/contact', lang)}>
                 {t('services.quote')}
@@ -77,6 +84,7 @@ const faqs = [
           ))
         }
       </div>
+      <p class="packages__note">{t('services.priceNote')}</p>
     </div>
 
     <div class="included fade-in">
@@ -175,6 +183,24 @@ const faqs = [
     font-family: var(--font-serif);
     font-size: 1.4rem;
     color: var(--color-accent);
+  }
+
+  .package-card__price {
+    padding-block: 0.9rem;
+    border-block: 1px solid var(--color-border);
+  }
+
+  .package-card__amount {
+    margin-top: 0.3rem;
+    font-family: var(--font-serif);
+    font-size: 2rem;
+    line-height: 1.1;
+  }
+
+  .packages__note {
+    margin-top: 1.25rem;
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
   }
 
   .package-card__ideal {

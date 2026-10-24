@@ -29,7 +29,7 @@ export const ui = {
     'service.baptisms': 'Baptisms & communions',
     'service.private': 'Private celebrations',
     'service.corporate': 'Corporate events',
-    'service.inquire': 'Inquire for a quote',
+    'service.inquire': 'Packages from €200',
     'home.cta.heading': "Planning an event? Let's talk.",
     'home.cta.button': 'Get in touch',
     'work.heading': 'Work',
@@ -79,6 +79,12 @@ export const ui = {
     'services.package3.coverage': 'Up to 10 hours',
     'services.package3.idealFor': 'Ideal for weddings, from getting ready to the party.',
     'services.quote': 'Request a quote',
+    'services.launch': 'Launch price',
+    'services.package1.price': 'From €200',
+    'services.package2.price': 'From €300',
+    'services.package3.price': 'From €600',
+    'services.priceNote':
+      'Extra hour: €60. Travel outside Madrid is quoted separately. Your final price is confirmed in a written quote.',
     'services.included.heading': 'Included in every package',
     'services.included.item1': 'Hand-picked photos, each edited for colour and light',
     'services.included.item2':
@@ -134,7 +140,7 @@ export const ui = {
     'service.baptisms': 'Bautizos y comuniones',
     'service.private': 'Celebraciones privadas',
     'service.corporate': 'Eventos corporativos',
-    'service.inquire': 'Consulta disponibilidad y presupuesto',
+    'service.inquire': 'Paquetes desde 200 €',
     'home.cta.heading': '¿Organizando un evento? Hablemos.',
     'home.cta.button': 'Ponte en contacto',
     'work.heading': 'Trabajos',
@@ -184,6 +190,12 @@ export const ui = {
     'services.package3.coverage': 'Hasta 10 horas',
     'services.package3.idealFor': 'Ideal para bodas, desde los preparativos hasta la fiesta.',
     'services.quote': 'Pedir presupuesto',
+    'services.launch': 'Precio de lanzamiento',
+    'services.package1.price': 'Desde 200 €',
+    'services.package2.price': 'Desde 300 €',
+    'services.package3.price': 'Desde 600 €',
+    'services.priceNote':
+      'Hora extra: 60 €. Los desplazamientos fuera de Madrid se presupuestan aparte. El precio final se confirma en un presupuesto por escrito.',
     'services.included.heading': 'Incluido en todos los paquetes',
     'services.included.item1': 'Fotos seleccionadas una a una y editadas en color y luz',
     'services.included.item2':
